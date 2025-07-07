@@ -6,22 +6,20 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "json-server": "json-server --watch db.json --port 4000",
-    "dev:all": "concurrently \"pnpm run dev\" \"pnpm run json-server\""
+    "lint": "next lint"
   },
   "dependencies": {
-    "json-server": "1.0.0-beta.3",
+    "@headlessui/react": "^2.2.4",
     "next": "15.2.0",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
-    "concurrently": "^9.2.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.0",
     "postcss": "^8",
