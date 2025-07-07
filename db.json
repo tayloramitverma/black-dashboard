@@ -1,0 +1,14 @@
+{
+    "users": [
+        {
+            "id": "das1",
+            "name": "user 1",
+            "role": "analytics"
+        },
+        {
+            "id": "das2",
+            "name": "user 3",
+            "role": "manager"
+        }
+    ]
+}
