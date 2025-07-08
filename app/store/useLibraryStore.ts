@@ -16,6 +16,8 @@ interface LibraryState {
   setActiveTab: (tab: TabFilter) => void;
   filterAssets: (query?: string) => void;
   clearFilters: () => void;
+  requestAccessAsset: (id: string) => void;
+  favoriteAsset: (id: string) => void;
 }
 
 export const useLibraryStore = create<LibraryState>((set, get) => ({
@@ -40,12 +42,14 @@ export const useLibraryStore = create<LibraryState>((set, get) => ({
 
   filterAssets: (queryOverride?: string) => {
     const { assets, searchQuery, activeTab } = get();
+    console.log("activeTab:", activeTab);
     const query = queryOverride ?? searchQuery;
     const filtered = assets.filter((a) => {
       const matchesSearch = a.title.toLowerCase().includes(query.toLowerCase());
       const matchesType = activeTab === 'all' || a.type === activeTab;
       return matchesSearch && matchesType;
     });
+    
     set({ filteredAssets: filtered });
   },
 
@@ -56,4 +60,31 @@ export const useLibraryStore = create<LibraryState>((set, get) => ({
       activeTab: 'all',
     });
   },
+
+  requestAccessAsset: (id: string) => {
+    const asset = get().assets.find(a => a.id === id);
+    if (asset) {
+      console.log(`Requesting access for asset: ${asset.title}`);
+      asset.hasAccess = true;
+      set((state) => ({
+        assets: state.assets.map(a => a.id === id ? { ...a, hasAccess: true } : a),
+        filteredAssets: state.filteredAssets.map(a => a.id === id ? { ...a, hasAccess: true } : a),
+      }));
+    } else {
+      console.error(`Asset with ID ${id} not found`);
+    }
+  },
+
+  favoriteAsset: (id: string) => {
+    const asset = get().assets.find(a => a.id === id);
+    if (asset) {
+      console.log(`Favoriting asset: ${asset.title}`);
+      set((state) => ({
+        assets: state.assets.map(a => a.id === id ? { ...a, favoriteCount: a.favoriteCount + 1 } : a),
+        filteredAssets: state.filteredAssets.map(a => a.id === id ? { ...a, favoriteCount: a.favoriteCount + 1 } : a),
+      }));
+    } else {
+      console.error(`Asset with ID ${id} not found`);
+    }
+  }
 }));

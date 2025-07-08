@@ -3,7 +3,7 @@ import { useLibraryStore } from "../store/useLibraryStore";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-const TABS = [
+const Tabs_Data = [
   { label: 'Featured', value: 'all' },
   { label: 'KPI', value: 'kpi' },
   { label: 'Layout', value: 'layout' },
@@ -35,12 +35,12 @@ export default function FilterBar() {
       } else {
         filterAssets('');
       }
-    }, 500);
+    }, 1000);
 
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [searchQuery]);
+  }, [searchQuery, activeTab]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -85,24 +85,6 @@ export default function FilterBar() {
           </button>
         )}
       </div>
-
-      <div className="flex gap-4">
-        {TABS.map((tab) => (
-          <button
-            key={tab.value}
-            onClick={() => handleTabClick(tab.value)}
-            className={clsx(
-              'px-4 py-2 rounded-full text-sm font-medium',
-              activeTab === tab.value
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 hover:bg-gray-200'
-            )}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
       {/* Recent searches */}
       {showRecent && recentSearches.length > 0 && (
         <div className="absolute z-10 w-full bg-white border mt-1 rounded-md shadow p-2">
@@ -120,6 +102,23 @@ export default function FilterBar() {
           </ul>
         </div>
       )}
+
+      <div className="flex gap-2">
+        {Tabs_Data.map((tab) => (
+          <button
+            key={tab.value}
+            onClick={() => handleTabClick(tab.value)}
+            className={clsx(
+              'px-4 py-2 rounded text-sm font-medium',
+              activeTab === tab.value
+                ? 'bg-gray-400 text-white'
+                : 'bg-gray-100 hover:bg-gray-200'
+            )}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
