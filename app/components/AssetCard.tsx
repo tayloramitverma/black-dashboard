@@ -1,7 +1,6 @@
 "use client";
 import { Asset } from "../types";
 import Image from "next/image";
-import { useState } from "react";
 
 interface Props {
   asset: Asset;
