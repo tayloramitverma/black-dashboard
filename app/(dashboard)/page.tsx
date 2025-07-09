@@ -1,10 +1,10 @@
 "use client";
-import FilterBar from "./components/FilterBar";
-import { useLibraryStore } from "./store/useLibraryStore";
-import AssetCard from "./components/AssetCard";
+import FilterBar from "../components/FilterBar";
+import { useLibraryStore } from "../store/useLibraryStore";
+import AssetCard from "../components/AssetCard";
 import { useState } from "react";
-import { Asset } from "./types";
-import { AssetModal } from "./components/AssetModal";
+import { Asset } from "../types";
+import { AssetModal } from "../components/AssetModal";
 
 export default function LibraryPage() {
   const { filteredAssets } = useLibraryStore();

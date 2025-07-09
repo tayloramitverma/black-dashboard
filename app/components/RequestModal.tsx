@@ -76,7 +76,7 @@ export default function AccessRequestModal({
           ${isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"}
         `}
       >
-        {/* Header */}
+
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-blue-100 rounded-lg">
@@ -100,7 +100,6 @@ export default function AccessRequestModal({
           </button>
         </div>
 
-        {/* Content */}
         <form onSubmit={handleSubmit} className="p-6">
           <div className="space-y-4">
             <div>

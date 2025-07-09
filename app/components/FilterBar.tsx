@@ -3,7 +3,7 @@ import { useLibraryStore } from "../store/useLibraryStore";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-const Tabs_Data = [
+const TABS_DATA = [
   { label: 'Featured', value: 'all' },
   { label: 'KPI', value: 'kpi' },
   { label: 'Layout', value: 'layout' },
@@ -85,7 +85,7 @@ export default function FilterBar() {
           </button>
         )}
       </div>
-      {/* Recent searches */}
+
       {showRecent && recentSearches.length > 0 && (
         <div className="absolute z-10 w-full bg-white border mt-1 rounded-md shadow p-2">
           <p className="text-xs text-gray-400 mb-1">Recent Searches</p>
@@ -104,7 +104,7 @@ export default function FilterBar() {
       )}
 
       <div className="flex gap-2">
-        {Tabs_Data.map((tab) => (
+        {TABS_DATA.map((tab) => (
           <button
             key={tab.value}
             onClick={() => handleTabClick(tab.value)}

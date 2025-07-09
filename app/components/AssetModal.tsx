@@ -22,7 +22,6 @@ export const AssetModal = ({ asset, onClose }: { asset: any; onClose: () => void
         }
 
         toast(`Access request submitted for ${asset.title}. Reason: ${reason}`);
-
         setIsAccessModalOpen(false);
     };
 
